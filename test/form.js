@@ -41,6 +41,29 @@ describe('parse.form(req, opts)', function(){
     })
   })
 
+  describe('without encoding', function() {
+    it('should return Buffer', function(done) {
+      var app = koa();
+
+      app.use(function *(){
+        var body = yield parse.form(this, {
+          encoding: null,
+          qs: { parse: (buf) => buf },
+        });
+
+        body.should.be.an.instanceof(Buffer);
+        this.status = 200;
+      });
+
+      request(app.listen())
+      .post('/')
+      .type('form')
+      .send('Hello')
+      .expect(200)
+      .end(function(err){ done(err); });
+    })
+  })
+
   describe('with qs settings', function(){
     var data = { level1: { level2: { level3: { level4: { level5: { level6: { level7: 'Hello' } } } } } } };
 

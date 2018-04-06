@@ -1,7 +1,7 @@
 {
-  "name": "co-body",
-  "version": "5.1.1",
-  "repository": "cojs/co-body",
+  "name": "@telemarket-llc/co-body",
+  "version": "1.0.0",
+  "repository": "telemarket-llc/co-body",
   "description": "request body parsing for co",
   "keywords": [
     "request",
